@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   const Expanded(
                     child: Text(
-                      'Tap to connect to a device',
+                      'Tap to Enable Blutooth',
                       style: TextStyle(
                         fontSize: 16.0, 
                         color: Colors.black,
@@ -425,7 +425,7 @@ class _HomePageState extends State<HomePage> {
     } else {
       for (var device in _devicesList) {
         items.add(DropdownMenuItem(
-          child: Text(device.name.toString()),
+          child: Text(device.name ?? ""),
           value: device,
         ));
       }
