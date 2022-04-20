@@ -286,7 +286,7 @@ class _HomePageState extends State<HomePage> {
                   });
                 },
                 decoration: InputDecoration(
-                  labelText: 'Select Date',
+                  labelText: 'Date',
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -298,14 +298,94 @@ class _HomePageState extends State<HomePage> {
                       width: 2.0,
                     ),
                   ),
-                  ),
                 ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
                 decoration: const InputDecoration(
-                  labelText: 'Enter a Text',
+                  labelText: 'Days worked so far',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      width: 2.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'First aid cases',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      width: 2.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Recordable injuries',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      width: 2.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextFormField(
+                cursorColor: Colors.blue,
+                readOnly: true,
+                onTap: () {
+                  setState(() {
+                    _selectDate(context);
+                  });
+                },
+                decoration: InputDecoration(
+                  labelText: 'Last Incident Date',
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                  hintText: (_date.toString()),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      width: 2.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Days without accident',
                   labelStyle: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
