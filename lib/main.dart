@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
       {String message, Duration duration: const Duration(seconds: 3)}) async {
     await Future.delayed(Duration(milliseconds: 100));
     // ignore: deprecated_member_use
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),
       duration: duration,
     ));
@@ -261,7 +261,9 @@ class _HomePageState extends State<HomePage> {
               child: GFButton(
                 onPressed: (){
                   if(_connected){
-                    _sendData(_datecontroller.text);
+                    _sendData(
+                      '{"Date": ${_datecontroller.text}}',
+                    );
                   }
                 },
                 text: "SEND",
@@ -273,7 +275,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
-                enabled: _connected,
+                enabled: isConnected,
                 controller: _daysWorkedcontroller,
                 decoration: const InputDecoration(
                   labelText: 'Days worked so far',
@@ -295,7 +297,9 @@ class _HomePageState extends State<HomePage> {
               child: GFButton(
                 onPressed: (){
                   if(_connected){
-                    _sendData(_daysWorkedcontroller.text);
+                    _sendData(
+                      '{"dwf": ${_daysWorkedcontroller.text}}',
+                    );
                   }
                 },
                 text: "SEND",
@@ -307,7 +311,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
-                enabled: _connected,
+                enabled: isConnected,
                 controller: _firstAidCasescontroller,
                 decoration: const InputDecoration(
                   labelText: 'First aid cases',
@@ -329,7 +333,9 @@ class _HomePageState extends State<HomePage> {
               child: GFButton(
                 onPressed: (){
                   if(_connected){
-                    _sendData(_firstAidCasescontroller.text);
+                    _sendData(
+                      '{"fac": ${_firstAidCasescontroller.text}}',
+                    );
                   }
                 },
                 text: "SEND",
@@ -341,7 +347,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
-                enabled: _connected,
+                enabled: isConnected,
                 controller: _injuriescontroller,
                 decoration: const InputDecoration(
                   labelText: 'Recordable injuries',
@@ -363,7 +369,9 @@ class _HomePageState extends State<HomePage> {
               child: GFButton(
                 onPressed: (){
                   if(_connected){
-                    _sendData(_injuriescontroller.text);
+                    _sendData(
+                      '{"ri": ${_injuriescontroller.text}}',
+                    );
                   }
                 },
                 text: "SEND",
@@ -375,7 +383,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
-                enabled: _connected,
+                enabled: isConnected,
                 controller: _lastIncidentDatecontroller,
                 cursorColor: Colors.amber,
                 readOnly: true,
@@ -405,7 +413,9 @@ class _HomePageState extends State<HomePage> {
               child: GFButton(
                 onPressed: (){
                   if(_connected){
-                    _sendData(_lastIncidentDatecontroller.text);
+                    _sendData(
+                      '{"ri": ${_lastIncidentDatecontroller.text}}',
+                    );
                   }
                 },
                 text: "SEND",
@@ -417,7 +427,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
-                enabled: _connected,
+                enabled: isConnected,
                 controller: _daysWithoutAccidentcontroller,
                 decoration: const InputDecoration(
                   labelText: 'Days without accident',
@@ -439,7 +449,9 @@ class _HomePageState extends State<HomePage> {
               child: GFButton(
                 onPressed: (){
                   if(_connected){
-                    _sendData(_daysWithoutAccidentcontroller.text);
+                    _sendData(
+                      '{"dwa": ${_daysWithoutAccidentcontroller.text}}',
+                    );
                   }
                 },
                 text: "SEND",
@@ -497,7 +509,7 @@ class _HomePageState extends State<HomePage> {
   void _connect() async {
     if (_device == null) {
       // ignore: deprecated_member_use
-      _scaffoldKey.currentState.showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('No device selected'),
       ));
     } else {
@@ -505,8 +517,8 @@ class _HomePageState extends State<HomePage> {
         await BluetoothConnection.toAddress(_device.address)
             .then((_connection) {
           // ignore: deprecated_member_use
-          _scaffoldKey.currentState.showSnackBar(SnackBar(
-            content: Text('Connected'),
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Connected to the device'),
           ));
           connection = _connection;
           setState(() {
@@ -528,8 +540,9 @@ class _HomePageState extends State<HomePage> {
         });
         _deviceState = -1;
         // ignore: deprecated_member_use
-        _scaffoldKey.currentState.showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text('Connected'),
+          duration: Duration(milliseconds: 1000),
         ));
       }
     }
@@ -538,7 +551,7 @@ class _HomePageState extends State<HomePage> {
   void _disconnect() async {
     await connection.close();
     // ignore: deprecated_member_use
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('Disconnected'),
     ));
     if (!connection.isConnected) {
