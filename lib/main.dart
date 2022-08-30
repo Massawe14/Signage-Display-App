@@ -213,13 +213,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
-                          // SizedBox(
-                          //   width: 8,
-                          // ),
                           deviceDropDownList(),
-                          // SizedBox(
-                          //   width: 20,
-                          // ),
                           connectionButton(),
                         ],
                       ),
@@ -227,6 +221,26 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GFButton(
+                onPressed: () {},
+                text: "TURN ON",
+                size: GFSize.LARGE,
+                blockButton: true,
+                color: Colors.amber,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GFButton(
+                onPressed: () {},
+                text: "TURN OFF",
+                size: GFSize.LARGE,
+                blockButton: true,
+                color: Colors.amber,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -414,7 +428,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: (){
                   if(_connected){
                     _sendData(
-                      '{"ri": ${_lastIncidentDatecontroller.text}}',
+                      '{"li": ${_lastIncidentDatecontroller.text}}',
                     );
                   }
                 },
